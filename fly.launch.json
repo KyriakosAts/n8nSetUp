@@ -1,0 +1,6 @@
+{
+  "type": "dockerfile",
+  "build": {
+    "dockerfile": "Dockerfile"
+  }
+}
