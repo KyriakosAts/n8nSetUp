@@ -1,17 +1,30 @@
 app = "agentFunkypantsOnDuty"
-primary_region = "mia"
+primary_region = "fra"  # Frankfurt - closest to Greece with good connectivity
 
 [build]
   dockerfile = "Dockerfile"
 
 [env]
+  # Authentication
   N8N_BASIC_AUTH_ACTIVE = "true"
   N8N_BASIC_AUTH_USER = "admin"
+  
+  # Core settings
   N8N_HOST = "your-n8n-app.fly.dev"
   N8N_PORT = "5678"
   N8N_PROTOCOL = "https"
   WEBHOOK_URL = "https://your-n8n-app.fly.dev"
+  
+  # Timezone
+  GENERIC_TIMEZONE = "Europe/Athens"
+  TZ = "Europe/Athens"
+  
+  # Execution settings
   EXECUTIONS_PROCESS = "main"
+  EXECUTIONS_TIMEOUT = "600"
+  
+  # Language (optional - για ελληνικά logs)
+  N8N_DEFAULT_LOCALE = "en"
 
 [mounts]
   source = "n8n_data"
@@ -30,3 +43,9 @@ primary_region = "mia"
     type = "connections"
     hard_limit = 25
     soft_limit = 20
+    
+  [[services.tcp_checks]]
+    grace_period = "30s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
