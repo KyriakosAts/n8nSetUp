@@ -1,4 +1,4 @@
-app = "your-n8n-app"
+app = "agentFunkypantsOnDuty"
 primary_region = "mia"
 
 [build]
