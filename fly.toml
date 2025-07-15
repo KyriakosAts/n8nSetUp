@@ -1,4 +1,4 @@
-app = "agentFunkypantsOnDuty"
+app = "agent-funkypants-on-duty"
 primary_region = "fra"  # Frankfurt - closest to Greece with good connectivity
 
 [build]
