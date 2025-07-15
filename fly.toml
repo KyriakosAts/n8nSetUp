@@ -1,0 +1,32 @@
+app = "your-n8n-app"
+primary_region = "mia"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  N8N_BASIC_AUTH_ACTIVE = "true"
+  N8N_BASIC_AUTH_USER = "admin"
+  N8N_HOST = "your-n8n-app.fly.dev"
+  N8N_PORT = "5678"
+  N8N_PROTOCOL = "https"
+  WEBHOOK_URL = "https://your-n8n-app.fly.dev"
+  EXECUTIONS_PROCESS = "main"
+
+[mounts]
+  source = "n8n_data"
+  destination = "/home/node/.n8n"
+  initial_size = "1gb"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 5678
+  
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+  
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
